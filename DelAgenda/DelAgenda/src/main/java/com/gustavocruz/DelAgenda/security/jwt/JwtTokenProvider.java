@@ -55,15 +55,35 @@ public class JwtTokenProvider {
       return new TokenDTO(username, true, now, validity, accessToken, refreshToken);
    }
 
+   public TokenDTO refreshToken(String refreshToken) {
+      var token = "";
+      if(refreshTokenContainsBearer(refreshToken)){
+         token = refreshToken.substring("Bearer ".length());
+      }
+
+
+      if(refreshTokenContainsBearer(refreshToken))refreshToken.substring("Bearer ".length());
+      JWTVerifier verifier = JWT.require(algorithm).build();
+      DecodedJWT decodedJWT = verifier.verify(refreshToken);
+
+
+      String username = decodedJWT.getSubject();
+      List<String> roles = decodedJWT.getClaim("roles").asList(String.class);
+      return createAccessToken(username, roles);
+   
+   }
+
+
+
    private String getRefreshToken(String username, List<String> roles, Date now) {
-      Date refreshTokenvalidity = new Date(now.getTime() + validityInMilliseconds);
-      return JWT.create().withClaim("roles", roles).withIssuedAt(now).withExpiresAt(refreshTokenvalidity).withSubject(username).sign(algorithm).toString();
+      Date refreshTokenvalidity = new Date(now.getTime() + validityInMilliseconds * 3);
+      return JWT.create().withClaim("roles", roles).withIssuedAt(now).withExpiresAt(refreshTokenvalidity).withSubject(username).sign(algorithm);
    }
 
    private String getAccessToken(String username, List<String> roles, Date now, Date validity) {
       String issueUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 
-      return JWT.create().withClaim("roles", roles).withIssuedAt(now).withExpiresAt(validity).withSubject(username).withIssuer(issueUrl).sign(algorithm).toString();
+      return JWT.create().withClaim("roles", roles).withIssuedAt(now).withExpiresAt(validity).withSubject(username).withIssuer(issueUrl).sign(algorithm);
    }
 
    public Authentication getAuthentication(String token){
@@ -83,13 +103,17 @@ public class JwtTokenProvider {
 
    public String resolveToken(HttpServletRequest request){
       String bearerToken = request.getHeader("Authorization");
-      if(StringUtils.isEmpty(bearerToken) && bearerToken.startsWith("Bearar ")){
+      if(refreshTokenContainsBearer(bearerToken)){
          return bearerToken.substring("Bearer ".length());
-      } else{
-         throw new InvalidJwtAuthenticationException("Invalid JWT Token");
       }
+      return null;
 
    }
+
+   private static boolean refreshTokenContainsBearer(String refreshToken) {
+      return StringUtils.isNotBlank(refreshToken) && refreshToken.startsWith("Bearar ");
+   }
+
 
    public boolean validateToken(String token) {
       DecodedJWT decodedJWT = decodedToken(token);
