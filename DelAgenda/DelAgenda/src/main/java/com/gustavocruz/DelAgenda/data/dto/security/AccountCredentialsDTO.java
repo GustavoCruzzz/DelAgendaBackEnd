@@ -1,4 +1,4 @@
-package com.gustavocruz.DelAgenda.data.dto.security;
+/*package com.gustavocruz.DelAgenda.data.dto.security;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -41,3 +41,4 @@ public class AccountCredentialsDTO implements Serializable {
         return Objects.hash(getUsername(), getPassword());
     }
 }
+*/

@@ -1,16 +1,21 @@
 package com.gustavocruz.DelAgenda.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table
-public class Delivery {
+public class Delivery implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    private Long id;
 
     @Column
     private String clientName;
@@ -22,18 +27,19 @@ public class Delivery {
     private String Adress;
 
     @Column
-    @OneToMany(mappedBy = "delivery")
-    private List<Item> Items;
+    @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Item> items;
 
     @Column
     private boolean Status;
 
     public Long getID() {
-        return ID;
+        return id;
     }
 
     public void setID(Long ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public String getClientName() {
@@ -61,11 +67,11 @@ public class Delivery {
     }
 
     public List<Item> getItems() {
-        return Items;
+        return items;
     }
 
     public void setItems(List<Item> items) {
-        Items = items;
+        this.items = items;
     }
 
     public boolean isStatus() {

@@ -1,4 +1,4 @@
-package com.gustavocruz.DelAgenda.config;
+/*package com.gustavocruz.DelAgenda.config;
 
 import com.gustavocruz.DelAgenda.security.jwt.JwtTokenFilter;
 import com.gustavocruz.DelAgenda.security.jwt.JwtTokenProvider;
@@ -66,3 +66,4 @@ public class SecurityConfig {
 
 
 }
+*/

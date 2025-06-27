@@ -1,4 +1,4 @@
-package com.gustavocruz.DelAgenda.service;
+/*package com.gustavocruz.DelAgenda.service;
 
 import com.gustavocruz.DelAgenda.data.dto.security.AccountCredentialsDTO;
 import com.gustavocruz.DelAgenda.data.dto.security.TokenDTO;
@@ -64,3 +64,4 @@ public class AuthService {
 
     }
 }
+*/

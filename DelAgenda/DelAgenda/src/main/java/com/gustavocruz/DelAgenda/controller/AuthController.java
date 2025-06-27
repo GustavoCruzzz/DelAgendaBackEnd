@@ -1,4 +1,4 @@
-package com.gustavocruz.DelAgenda.controller;
+/*package com.gustavocruz.DelAgenda.controller;
 
 import com.gustavocruz.DelAgenda.data.dto.security.AccountCredentialsDTO;
 import com.gustavocruz.DelAgenda.data.dto.security.TokenDTO;
@@ -45,3 +45,4 @@ public class AuthController {
     }
 
 }
+*/

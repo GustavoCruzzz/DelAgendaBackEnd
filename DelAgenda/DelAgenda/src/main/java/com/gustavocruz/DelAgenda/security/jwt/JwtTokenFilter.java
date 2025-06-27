@@ -1,4 +1,4 @@
-package com.gustavocruz.DelAgenda.security.jwt;
+/*package com.gustavocruz.DelAgenda.security.jwt;
 
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;
@@ -35,3 +35,4 @@ public class JwtTokenFilter extends GenericFilterBean {
 
     }
 }
+*/

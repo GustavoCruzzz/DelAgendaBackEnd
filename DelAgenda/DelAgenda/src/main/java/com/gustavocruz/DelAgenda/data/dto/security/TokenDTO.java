@@ -1,4 +1,4 @@
-package com.gustavocruz.DelAgenda.data.dto.security;
+/*package com.gustavocruz.DelAgenda.data.dto.security;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -87,3 +87,4 @@ public class TokenDTO implements Serializable {
         return Objects.hash(getUsername(), getAuthenticated(), getCreated(), getExpiration(), getAccessToken(), getRefreshToken());
     }
 }
+*/
