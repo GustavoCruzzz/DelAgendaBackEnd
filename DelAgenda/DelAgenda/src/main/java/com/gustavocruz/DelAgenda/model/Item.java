@@ -1,63 +1,31 @@
 package com.gustavocruz.DelAgenda.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.IdGeneratorType;
 
-import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 @Table
-public class Item implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class Item {
+
+@Id
+@GeneratedValue
+private UUID id;
+private String name;
+private int quantity;
+private Boolean delivered;
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-
-    @Column
-    private String Name;
-
-    @Column
-    private boolean Delivered = false;
-
-    @Column
-    private int Quantity;
-
-    @ManyToOne
-    @JoinColumn(name = "delivery_id")
-    @JsonBackReference
-    private Delivery delivery;
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public boolean isDelivered() {
-        return Delivered;
-    }
-
-    public void setDelivered(boolean delivered) {
-        Delivered = delivered;
-    }
-
-    public int getQuantity() {
-        return Quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        Quantity = quantity;
-    }
-
-    public Delivery getDelivery() {
-        return delivery;
-    }
-
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
-    }
 }
