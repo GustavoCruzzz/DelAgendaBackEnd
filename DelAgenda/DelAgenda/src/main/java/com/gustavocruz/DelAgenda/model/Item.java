@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.IdGeneratorType;
 
 import java.util.UUID;
 
@@ -27,5 +26,9 @@ private String name;
 private int quantity;
 private Boolean delivered;
 
-
+    public Item(UUID id, String name, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+    }
 }
