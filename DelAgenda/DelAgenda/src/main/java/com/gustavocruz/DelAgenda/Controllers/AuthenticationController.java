@@ -1,10 +1,7 @@
 package com.gustavocruz.DelAgenda.Controllers;
 
 import com.gustavocruz.DelAgenda.config.Security.TokenService;
-import com.gustavocruz.DelAgenda.model.AuthenticationDTO;
-import com.gustavocruz.DelAgenda.model.LoginResponseDTO;
-import com.gustavocruz.DelAgenda.model.RegisterDTO;
-import com.gustavocruz.DelAgenda.model.User;
+import com.gustavocruz.DelAgenda.model.*;
 import com.gustavocruz.DelAgenda.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +43,7 @@ public class AuthenticationController {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         User user = new User(data.login(), encryptedPassword);
-
+        user.setRole(UserRole.valueOf("USER"));
         this.repository.save(user);
         return ResponseEntity.ok().build();
     }
