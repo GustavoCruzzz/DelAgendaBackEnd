@@ -2,6 +2,10 @@ security:
   jwt:
     token:
       secret-key: 53cr37
+springdoc:
+  api-docs:
+    path: /api-docs
+
 spring:
   application:
     name: DelAgenda

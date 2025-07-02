@@ -27,7 +27,6 @@ class DeliveryServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // Criando lista de itens mockada
         itemList = List.of(
                 new Item(UUID.randomUUID(), "Item 1", 2),
                 new Item(UUID.randomUUID(), "Item 2", 5)

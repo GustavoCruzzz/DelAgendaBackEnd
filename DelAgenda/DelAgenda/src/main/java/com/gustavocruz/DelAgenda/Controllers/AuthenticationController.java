@@ -3,6 +3,7 @@ package com.gustavocruz.DelAgenda.Controllers;
 import com.gustavocruz.DelAgenda.config.Security.TokenService;
 import com.gustavocruz.DelAgenda.model.*;
 import com.gustavocruz.DelAgenda.repositories.UserRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
+    @Operation(summary = "User Login", description = "Enter in a already existent account")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
@@ -38,6 +40,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
+    @Operation(summary = "User registry", description = "Create a new User account")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
         if (this.repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
