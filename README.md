@@ -61,7 +61,7 @@ The project includes unit tests written using **JUnit 5** and **Mockito**, focus
 
 ### Prerequisites
 
-- Java 17
+- Java 21
 - Maven
 
 ### Run Locally
